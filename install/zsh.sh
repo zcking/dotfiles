@@ -5,7 +5,7 @@
 # and installs ohmyzsh framework.
 
 # Install and set shell to Zsh
-sudo apt install -y zsh curl git
+sudo apt install -y zsh curl git fonts-powerline
 chsh -s $(which zsh)
 
 # oh-my-zsh
