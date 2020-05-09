@@ -6,4 +6,4 @@ RUN apt-get update && \
 WORKDIR /root/dotfiles
 ADD . .
 
-CMD [ "/bin/sh" ]
+CMD [ "/bin/sh", "setup.sh" ]
