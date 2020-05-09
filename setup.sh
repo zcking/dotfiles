@@ -26,6 +26,7 @@ done
 ./install/docker.sh
 ./install/asdf.sh
 ./install/python.sh
+./install/aws-cli.sh
 
 # Sync the symlinks to dotfiles
 ./bin/sync.sh
