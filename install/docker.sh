@@ -16,8 +16,11 @@ sudo usermod -aG docker $USER
 newgrp docker
 
 # Make sure .docker directory has the right permissions
-sudo chown -R "$USER:$USER" "$HOME/.docker"
-sudo chmod -R g+rwx "$HOME/.docker"
+if [ -d "$HOME/.docker" ]
+then
+  sudo chown -R "$USER:$USER" "$HOME/.docker"
+  sudo chmod -R g+rwx "$HOME/.docker"
+fi
 
 # Disable docker from starting on boot
 # (use the following line instead if you want it enabled on boot)
