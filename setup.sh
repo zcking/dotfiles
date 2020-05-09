@@ -28,6 +28,7 @@ done
 ./install/python.sh
 ./install/aws-cli.sh
 ./install/terraform.sh
+./install/vim.sh
 
 # Sync the symlinks to dotfiles
 ./bin/sync.sh
