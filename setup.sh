@@ -21,7 +21,19 @@ do
 done
 
 # Install components...
+# for SCRIPT in `find install/ -type f | sort`
+# do
+#   if [ -f "$SCRIPT" ]
+#   then
+#     echo "Installilng $SCRIPT..."
+#     sh "$SCRIPT"
+#   fi
+# done
+
+./install/fira-code.sh
 ./install/zsh.sh
+./install/virtualbox.sh
+./install/vagrant.sh
 
 # Create symlinks for appropriate dotfiles
 mk_symlinks system/
