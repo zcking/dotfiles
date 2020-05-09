@@ -34,6 +34,7 @@ done
 ./install/zsh.sh
 ./install/virtualbox.sh
 ./install/vagrant.sh
+./install/docker.sh
 
 # Create symlinks for appropriate dotfiles
 mk_symlinks system/
