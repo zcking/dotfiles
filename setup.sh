@@ -27,6 +27,7 @@ done
 ./install/asdf.sh
 ./install/python.sh
 ./install/aws-cli.sh
+./install/terraform.sh
 
 # Sync the symlinks to dotfiles
 ./bin/sync.sh
