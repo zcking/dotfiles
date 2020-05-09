@@ -21,5 +21,3 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Link the .vimrc file
 ln -svf "$(pwd)/system/.vimrc" ~
 
-# Install Vundle plugins
-vim +PluginInstall +qall

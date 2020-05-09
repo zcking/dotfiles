@@ -17,3 +17,6 @@ mk_symlinks () {
 mk_symlinks system/
 mk_symlinks zsh/
 mk_symlinks git/
+
+# Install Vundle plugins
+vim +PluginInstall +qall
