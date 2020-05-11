@@ -12,5 +12,7 @@ then
   apt install -y -q git
 fi
 
+rm -rf ~/.asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch "v$ASDF_VERSION"
+
 

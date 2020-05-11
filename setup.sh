@@ -24,11 +24,15 @@ done
 ./install/virtualbox.sh
 ./install/vagrant.sh
 ./install/docker.sh
+./install/vim.sh
+
+./bin/sync.sh
 ./install/asdf.sh
+source $HOME/.bash_profile # necessary to find asdf in the following programs
+
 ./install/python.sh
 ./install/aws-cli.sh
 ./install/terraform.sh
-./install/vim.sh
 
 # Sync the symlinks to dotfiles
 ./bin/sync.sh

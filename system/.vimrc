@@ -106,6 +106,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/venv/*,*.pyc     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = '\v[\/](venv)$'
 
+let NERDTreeShowHidden=1
+
 " Airline (status bar) customization
 let g:airline_theme='alduin'
 let g:airline#extensions#tabline#enabled = 1

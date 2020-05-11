@@ -87,8 +87,8 @@ else
 fi
 
 # ASDF initialization
-[ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
+[ -f $HOME/.asdf/asdf.sh ] && . $HOME/.asdf/asdf.sh
 
 # added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && . $HOME/.travis/travis.sh
 

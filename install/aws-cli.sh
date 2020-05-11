@@ -8,4 +8,7 @@ if ! [ -x "$(command -v pip)" ]; then
 fi
 
 pip install --upgrade awscli
-aws configure # will prompt user for inputs
+if [ -x "$(command -v aws)" ]; then
+  aws configure # will prompt user for inputs
+fi
+

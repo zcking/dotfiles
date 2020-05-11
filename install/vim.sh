@@ -21,3 +21,9 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Link the .vimrc file
 ln -svf "$(pwd)/system/.vimrc" ~
 
+# Install onedark theme
+mkdir -p ~/.vim/colors
+mkdir -p ~/.vim/autoload
+curl -o ~/.vim/colors/onedark.vim https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/onedark.vim
+curl -o ~/.vim/autoload/onedark.vim https://raw.githubusercontent.com/joshdick/onedark.vim/master/colors/onedark.vim
+
