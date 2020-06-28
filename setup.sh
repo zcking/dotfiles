@@ -3,6 +3,21 @@
 # Main entrypoint to setting up these dotfiles.
 # should be executed from the same directory as this file
 
+# Detect the OS
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=linux;;
+    # Darwin*)    machine=mac;;
+    *)          machine=unsupported
+esac
+
+if [ $machine == "unsupported" ]; then
+  echo "$unameOut is not currently supported"
+  exit 1
+else
+  echo "$machine detected"
+fi
+
 for SCRIPT in `find install/ -type f`
 do
   chmod +x "$SCRIPT"
