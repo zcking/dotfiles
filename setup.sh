@@ -7,7 +7,7 @@
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=linux;;
-    # Darwin*)    machine=mac;;
+    Darwin*)    machine=mac;;
     *)          machine=unsupported
 esac
 
@@ -24,30 +24,32 @@ do
 done
 
 # Install components...
-# for SCRIPT in `find install/ -type f | sort`
-# do
-#   if [ -f "$SCRIPT" ]
-#   then
-#     echo "Installilng $SCRIPT..."
-#     sh "$SCRIPT"
-#   fi
-# done
+install_wizard() {
+  installer=$(echo $1 | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)
+  while true; do
+    read -p "Do you wish to install $installer? (y/n): " yn
+    case $yn in
+      [Yy]*) echo "installing $installer ..."; /bin/sh $1; echo "$installer installation complete\n"; break;;
+      [Nn]*) echo "skipping $installer"; break;;
+      *) echo "please answer yes (y) or no (n)";;
+    esac
+  done
+}
 
-# TODO: setup a prompt for each of these to ask if I want to install them
-./install/fira-code.sh
-./install/zsh.sh
-./install/virtualbox.sh
-./install/vagrant.sh
-./install/docker.sh
-./install/vim.sh
+install_wizard ./install/fira-code.sh
+install_wizard ./install/zsh.sh
+install_wizard ./install/virtualbox.sh
+install_wizard ./install/vagrant.sh
+install_wizard ./install/docker.sh
+install_wizard ./install/vim.sh
 
 ./bin/sync.sh
-./install/asdf.sh
-source $HOME/.bash_profile # necessary to find asdf in the following programs
+echo "the ASDF package manager is required to install the next components"
+install_wizard ./install/asdf.sh
 
-./install/python.sh
-./install/aws-cli.sh
-./install/terraform.sh
+install_wizard ./install/python.sh
+install_wizard ./install/aws-cli.sh
+install_wizard ./install/terraform.sh
 
 # Sync the symlinks to dotfiles
 ./bin/sync.sh
