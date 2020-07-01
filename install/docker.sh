@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # docker.sh
 # Installs and sets up the Docker engine and permissions.
@@ -11,7 +11,7 @@ sudo apt install -y docker
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
-# Reinitialize groups - works like logging out 
+# Reinitialize groups - works like logging out
 # and back in for this
 newgrp docker
 

@@ -5,5 +5,6 @@ RUN apt-get update && \
 
 WORKDIR /root/dotfiles
 ADD . .
+RUN chmod +x ./setup.sh
 
-CMD [ "/bin/sh", "setup.sh" ]
+CMD [ "/bin/bash", "setup.sh" ]

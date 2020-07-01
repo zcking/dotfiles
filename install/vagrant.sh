@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # vagrant.sh
 # Installs HashiCorp Vagrant tool

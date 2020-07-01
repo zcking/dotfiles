@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # zsh.sh
 # Installs zsh, sets is as the default shell,

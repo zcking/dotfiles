@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # asdf.sh
 # Installs the ASDF version manager for

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # fira-code.sh
 # Installs FiraCode fonts

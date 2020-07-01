@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # python.sh
 # Installs Python installations using asdf-vm

@@ -13,12 +13,14 @@ mk_symlinks () {
   done
 }
 
-read -p "are you sure you'd like to sync? (y/n): " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
-  exit 1
-fi
+read -p "are you sure you'd like to sync? (y/n): " yn
+while true; do
+  case $yn in
+    [Yy]* ) break;;
+    [Nn]* ) exit;;
+    * ) echo "Pleaser enter 'y' or 'n'";;
+  esac
+done
 
 # Create symlinks for appropriate dotfiles
 mk_symlinks system/

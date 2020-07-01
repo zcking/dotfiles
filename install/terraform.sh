@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # terraform.sh
 # Installs Terraform using asdf-vm

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # vim.sh
 # Installs and provisions Vim

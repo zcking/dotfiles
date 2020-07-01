@@ -92,3 +92,7 @@ fi
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && . $HOME/.travis/travis.sh
 
+# Set JAVA_HOME using ASDF if it is installed
+if [ -f $HOME/.asdf/plugins/java/set-java-home.zsh ]; then
+  . $HOME/.asdf/plugins/java/set-java-home.zsh
+fi

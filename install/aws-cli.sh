@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # aws-cli.sh
 # Installs the AWS command-line using pip
