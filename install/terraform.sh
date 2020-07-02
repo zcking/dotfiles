@@ -10,9 +10,9 @@ fi
 asdf plugin add terraform
 
 # Install versions
-asdf install terraform 0.12.24
+asdf install terraform 0.12.28
 
 # Set global version for default use
-asdf global terraform 0.12.24
+asdf global terraform 0.12.28
 
 terraform --version

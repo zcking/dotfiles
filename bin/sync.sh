@@ -29,3 +29,7 @@ mk_symlinks git/
 
 # Install Vundle plugins
 vim +PluginInstall +qall
+
+if [ -x "$(command -v asdf)" ]; then
+  asdf reshim
+fi
