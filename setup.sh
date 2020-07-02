@@ -62,3 +62,5 @@ install_wizard ./install/terraform.sh
 
 # Sync the symlinks to dotfiles
 ./bin/sync.sh
+
+source ~/.bash_profile

@@ -3,6 +3,10 @@
 # fira-code.sh
 # Installs FiraCode fonts
 
+if [ $1 = "linux" ]; then
+  sudo apt install -y fontconfig
+fi
+
 fonts_dir="${HOME}/.local/share/fonts"
 if [ ! -d "${fonts_dir}" ]; then
     echo "mkdir -p $fonts_dir"
