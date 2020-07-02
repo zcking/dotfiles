@@ -72,7 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose zsh_reload asdf)
+plugins=(git docker docker-compose zsh_reload asdf zsh-autosuggestions zsh-syntax-highlighting colorize)
 
 # Oh My Zsh initialization
 if [ -e $ZSH/oh-my-zsh.sh ]; then

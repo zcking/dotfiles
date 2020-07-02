@@ -1,2 +1,9 @@
-#!/bin/sh
-# Shell Functions
+# .function - Shell Functions
+
+function dockerstopall() {
+  docker stop $(docker ps -aq)
+}
+
+function dockerpruneall() {
+  docker ps -q | xargs docker stop ; docker system prune -a
+}

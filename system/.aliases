@@ -1,1 +1,3 @@
-#!/bin/sh
+alias makemelaugh='curl -s -H "Accept: text/plain" https://icanhazdadjoke.com/ | cowsay'
+alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias shrug='echo "¯\_(ツ)_/¯" | pbcopy'
