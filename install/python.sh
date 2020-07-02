@@ -18,13 +18,11 @@ asdf install python 2.7.18
 asdf install python 3.8.2
 
 # Set global version for default use
-# asdf global python 3.8.2
+asdf global python 3.8.2
 
 # Install pip for system
 curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
 python /tmp/get-pip.py
 
 # Upgrade global installation of pip to latest
-if [ -x "$(command -v pip)" ]; then
-  pip install --upgrade pip
-fi
+python -m pip install --upgrade pip
