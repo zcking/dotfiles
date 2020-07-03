@@ -6,16 +6,26 @@ Mainly managing here as a backup and to have an excuse to keep it organized, but
 
 ---
 
-## USAGE
+## Setup
 
-Easy, just run the setup script with Bash.
+Easy, just clone and run the setup script with Bash.
 
 ```shell
+git clone https://github.com/zcking/dotfiles ~/dotfiles
+cd ~/dotfiles
 chmod +x setup.sh
 ./setup.sh
 ```
 
 This will prompt for installing the various components under the `install/` folder. You can skip the components you don't need, or easily add more by modifying the `setup.sh` script.
+
+## Usage
+
+For normal day-to-day changes that you make to the dotfiles (e.g. `~/.zshrc`, `~/.aliases`, etc.) those will be automatically version controlled by your local copy of this Git repo.
+
+This is because the `bin/sync.sh` script creates symlinks so for example, your normal `~/.zshrc` file is actually a symlink to the `~/dotfiles/system/.zshrc` file in the local repository.
+
+If you make changes and want to commit those changes, simply go to your local copy of this Git repo and make commits.
 
 ## Testing
 
