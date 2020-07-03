@@ -4,8 +4,17 @@
 # Installs zsh, sets is as the default shell,
 # and installs ohmyzsh framework.
 
-# Install and set shell to Zsh
-sudo apt install -y zsh curl git fonts-powerline
+# Install Zsh
+if [ $1 = "linux" ]; then
+  sudo apt install -y zsh curl git fonts-powerline
+elif [ $1 = "mac" ]; then
+  brew install zsh curl git fonts-powerline
+else
+  echo "$1 is not supported yet"
+  exit 1
+fi
+
+# Set shell to Zsh
 chsh -s $(which zsh)
 
 # oh-my-zsh

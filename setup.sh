@@ -20,7 +20,7 @@ fi
 
 # Update system package manager
 if [ $machine = "linux" ]; then
-  apt update -y
+  sudo apt update -y
 elif [ $machine = "mac" ]; then
   brew update -y
 fi

@@ -4,7 +4,11 @@
 # Installs and provisions Vim
 
 # Install the vim command line editor
-sudo apt install -y vim
+if [ $1 = "linux" ]; then
+  sudo apt install -y vim
+elif [ $1 = "mac" ]; then
+  brew install vim
+fi
 
 # Install curl and git if not installed already
 # required for installing Vundle plugin manager

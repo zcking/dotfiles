@@ -72,7 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose zsh_reload asdf zsh-autosuggestions zsh-syntax-highlighting colorize)
+plugins=(git docker docker-compose zsh_reload zsh-autosuggestions zsh-syntax-highlighting colorize)
 
 # Oh My Zsh initialization
 if [ -e $ZSH/oh-my-zsh.sh ]; then
@@ -86,11 +86,11 @@ else
   export EDITOR='vim'
 fi
 
-# ASDF initialization
-[ -f $HOME/.asdf/asdf.sh ] && . $HOME/.asdf/asdf.sh
-
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && . $HOME/.travis/travis.sh
+
+# ASDF initialization
+[ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
 
 # Set JAVA_HOME using ASDF if it is installed
 if [ -f $HOME/.asdf/plugins/java/set-java-home.zsh ]; then

@@ -1,16 +1,15 @@
-#!/bin/sh
 
 # .path - PATH environment variable additions
 # =============================================================
 
-# set PATH so it includes user's private bin if it exists                                                         
-if [ -d "$HOME/bin" ] ; then                                                                                      
-  PATH="$HOME/bin:$PATH"                                                                                        
-fi                                                                                                                
-                                                                                                                  
-# set PATH so it includes user's private bin if it exists                                                         
-if [ -d "$HOME/.local/bin" ] ; then                                                                               
-  PATH="$HOME/.local/bin:$PATH"                                                                                 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+  PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Shared binaries
@@ -22,13 +21,5 @@ if [ -d "/usr/sbin" ]; then
 fi
 if [ -d "/sbin" ]; then
   export PATH=$PATH:/sbin
-fi
-
-# AWS CLI
-if [ -x "$(command asdf)" ]; then
-  GLOBAL_PYTHON_VERSION=`asdf current python | cut -d" " -f1`
-  if ! [ $GLOBAL_PYTHON_VERSION = "No" ]; then
-    export PATH="$HOME/.asdf/installs/python/$GLOBAL_PYTHON_VERSION/bin:$PATH"
-  fi
 fi
 

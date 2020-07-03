@@ -13,7 +13,7 @@ set hlsearch 	" highlight matches
 let mapleader = ","
 
 " turn off search highlight (reset it) - keymappted to ,<space>
-nnoremap <leader><space> :nohlsearch<CR> 
+nnoremap <leader><space> :nohlsearch<CR>
 
 " move to beginning/end of line
 nnoremap B ^
