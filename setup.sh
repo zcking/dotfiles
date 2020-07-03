@@ -50,6 +50,7 @@ install_wizard ./install/virtualbox.sh
 install_wizard ./install/vagrant.sh
 install_wizard ./install/docker.sh
 install_wizard ./install/vim.sh
+install_wizard ./install/vscode.sh
 
 ./bin/sync.sh
 echo "the ASDF package manager is required to install the next components"
