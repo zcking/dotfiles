@@ -8,7 +8,11 @@
 if [ $1 = "linux" ]; then
   sudo apt install -y zsh curl git fonts-powerline
 elif [ $1 = "mac" ]; then
-  brew install zsh curl git fonts-powerline
+  brew install zsh curl git
+
+  # Install powerline fonts. This can't be installed with brew
+  git clone https://github.com/powerline/fonts /tmp/powerline-fonts
+  /bin/bash /tmp/powerline-fonts/install.sh
 else
   echo "$1 is not supported yet"
   exit 1
