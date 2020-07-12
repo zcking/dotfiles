@@ -8,7 +8,8 @@ mk_symlinks () {
   do
     if [ -f "$DOTFILE" ]
     then
-      ln -svf "$PWD/$DOTFILE" ~
+      src_path=`echo $PWD/$DOTFILE | tr -s '/'`
+      ln -svf $src_path ~
     fi
   done
 }
