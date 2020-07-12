@@ -22,7 +22,7 @@ fi
 if [ $machine = "linux" ]; then
   sudo apt update -y
 elif [ $machine = "mac" ]; then
-  brew update -y
+  brew update
 fi
 
 for SCRIPT in `find install/ -type f`
