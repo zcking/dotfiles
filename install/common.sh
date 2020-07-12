@@ -7,5 +7,6 @@
 if [ $1 = "linux" ]; then
   sudo apt install -y wget curl unzip
 elif [ $1 = "mac" ]; then
+  xcode-select --install
   brew install wget curl
 fi
