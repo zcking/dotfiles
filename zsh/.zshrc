@@ -74,6 +74,9 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker docker-compose zsh_reload zsh-autosuggestions zsh-syntax-highlighting colorize)
 
+# Fix globbing with zsh
+unsetopt nomatch
+
 # Oh My Zsh initialization
 if [ -e $ZSH/oh-my-zsh.sh ]; then
   source $ZSH/oh-my-zsh.sh
