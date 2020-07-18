@@ -59,6 +59,8 @@ install_wizard ./install/asdf.sh
 install_wizard ./install/python.sh
 install_wizard ./install/aws-cli.sh
 install_wizard ./install/java.sh
+install_wizard ./install/erlang.sh
+install_wizard ./install/elixir.sh
 install_wizard ./install/terraform.sh
 
 # Sync the symlinks to dotfiles
