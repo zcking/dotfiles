@@ -4,7 +4,7 @@
 # Installs Python installations using asdf-vm
 
 if ! [ -x "$(command -v asdf)" ]; then
-  ./install/asdf.sh
+  ./install/asdf.sh $1
 fi
 
 asdf plugin add python
