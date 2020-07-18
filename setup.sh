@@ -60,6 +60,7 @@ install_wizard ./install/python.sh
 install_wizard ./install/aws-cli.sh
 install_wizard ./install/java.sh
 install_wizard ./install/maven.sh
+install_wizard ./install/scala.sh
 install_wizard ./install/erlang.sh
 install_wizard ./install/elixir.sh
 install_wizard ./install/terraform.sh
