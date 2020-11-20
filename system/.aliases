@@ -3,3 +3,4 @@ alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias shrug='echo "¯\_(ツ)_/¯" | pbcopy'
 alias dc='docker-compose'
 
+alias dockermop='docker rmi $(docker images -f dangling=true -q)'
