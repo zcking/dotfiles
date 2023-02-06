@@ -32,3 +32,8 @@ fi
 if [ -d "$HOME/dev/opt/flutter/bin" ]; then
   export PATH="$PATH:$HOME/dev/opt/flutter/bin"
 fi
+
+# Android CLI tools
+if [ -d "$HOME/Library/Android/sdk/cmdline-tools/latest/bin/" ]; then
+  export PATH=$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin/
+fi

@@ -5,6 +5,9 @@
 
 if [ $1 = "linux" ]; then
   sudo apt install -y fontconfig
+elif [ $1 = "mac" ]; then
+  brew tap homebrew/cask-fonts
+  brew install --cask font-fira-code
 fi
 
 fonts_dir="${HOME}/.local/share/fonts"
