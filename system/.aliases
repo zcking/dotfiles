@@ -1,4 +1,4 @@
-alias makemelaugh='curl -s -H "Accept: text/plain" https://icanhazdadjoke.com/ | cowsay'
+alias makemelaugh='curl -s -H "Accept: text/plain" https://icanhazdadjoke.com/ | cowsay -r'
 alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias shrug='echo "¯\_(ツ)_/¯" | pbcopy'
 alias dc='docker-compose'
@@ -9,3 +9,7 @@ alias gtree='git log --all --graph --decorate --oneline'
 alias newssl='openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -subj "/CN=localhost"'
 alias devsync='git pull origin develop'
 
+alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
+alias k='kubectl'

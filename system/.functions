@@ -34,6 +34,31 @@ function uppercase() {
 }
 
 function last-hash() {
-  git log --abbrev-commit | head -n 1 | awk '{print $NF}'
+  git log --abbrev-commit | head -n 1 | awk '{printf $NF}'
 }
 
+function aws-try-role() {
+  aws sts assume-role --role-arn $1 --role-session-name $(date +%s)
+}
+
+# Outputs details about request/response times
+# with cURL
+function curltime() {
+        curl -w @- -o /dev/null -s "$1" <<'EOF'
+            time_namelookup:  %{time_namelookup}\n
+               time_connect:  %{time_connect}\n
+            time_appconnect:  %{time_appconnect}\n
+           time_pretransfer:  %{time_pretransfer}\n
+              time_redirect:  %{time_redirect}\n
+         time_starttransfer:  %{time_starttransfer}\n
+                            ----------\n
+                 time_total:  %{time_total}\n
+EOF
+}
+
+function tfref() {
+    hash=$1
+    shift
+    echo "updating ref to $hash ..."
+    sed -i '' "s/ref=.*/ref=${hash}\"/g" $@
+}
