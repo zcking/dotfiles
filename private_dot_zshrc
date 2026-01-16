@@ -1,0 +1,47 @@
+export EDITOR=nvim
+
+# 1. CRITICAL: Source homebrew first so everything else can find binaries 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ -f ~/.path ]] && source ~/.path
+
+
+# 2. ENVIRONMENT VARIABLES
+[[ -f ~/.env ]] && source ~/.env
+
+
+# 3. FUNCTIONS (Source before aliases so aliases can use them)
+[[ -f ~/.functions ]] && source ~/.functions
+
+
+# 4. PLUGINS
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# 5. ALIASES (Source last)
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+
+# 6. Private settings
+[[ -f ~/.private ]] && source ~/.private
+
+
+# 7. MISCELLANEOUS
+# Ensure VS Code / Cursor terminals use emacs key bindings
+if [[ -o interactive ]]; then
+  bindkey -e
+fi
+
+# Shell completions
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+source $HOME/.tenv.completion.zsh
+source $HOME/.pants/pants-completions.zsh
+
+#THIS MUST NEAR BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Shell theme
+eval "$(starship init zsh)"
+

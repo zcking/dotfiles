@@ -1,0 +1,6 @@
+# Aliases
+alias tf='tofu' # 'terraform'
+alias tfmt='tofu fmt -recursive'
+alias gw='git worktree'
+alias cm='chezmoi'
+

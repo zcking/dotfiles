@@ -1,0 +1,17 @@
+# Load a .env file, exporting all environment variables inside it to the shell.
+# Usage: load_env .env
+function load_env() {
+    local env_file=$1
+
+    if [[ ! -f "$env_file" ]]; then
+        echo "Error: File not found at $env_file"
+        return 1
+    fi
+
+    # Use grep to ignore comments and empty lines, then use awk to format as 'export KEY=VALUE'
+    grep -v '^#' "$env_file" | grep -v '^[[:space:]]*$' | while IFS= read -r line; do
+        export "$line"
+    done
+
+    echo "Environment variables from $env_file loaded and exported."
+}
