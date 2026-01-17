@@ -1,0 +1,74 @@
+# 1. CRITICAL: Source homebrew first so everything else can find binaries 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ $path := joinPath .chezmoi.homeDir ".path" }}
+{{- if stat $path }}
+source {{ $path }}
+{{- end }}
+
+
+# 2. ENVIRONMENT VARIABLES
+{{ $env := joinPath .chezmoi.homeDir ".env" }}
+{{- if stat $env }}
+source {{ $env }}
+{{- end }}
+
+
+# 3. FUNCTIONS (Source before aliases so aliases can use them)
+{{ $functions := joinPath .chezmoi.homeDir ".functions" }}
+{{- if stat $functions }}
+source {{ $functions }}
+{{- end }}
+
+
+# 4. PLUGINS
+{{- $pluginDir := joinPath .chezmoi.homeDir ".zsh" }}
+
+{{- $autosuggest := joinPath $pluginDir "zsh-autosuggestions" "zsh-autosuggestions.zsh" }}
+{{- if stat $autosuggest }}
+source {{ $autosuggest }}
+{{- end }}
+
+{{- $syntax := joinPath $pluginDir "zsh-syntax-highlighting" "zsh-syntax-highlighting.zsh" }}
+{{- if stat $syntax }}
+source {{ $syntax }}
+{{- end }}
+
+# 5. ALIASES
+{{ $aliases := joinPath .chezmoi.homeDir ".aliases" }}
+{{- if stat $aliases }}
+source {{ $aliases }}
+{{- end }}
+
+
+# 6. Private settings
+{{ $private := joinPath .chezmoi.homeDir ".private" }}
+{{- if stat $private }}
+source {{ $private }}
+{{- end }}
+
+
+# 7. MISCELLANEOUS
+# Ensure VS Code / Cursor terminals use emacs key bindings
+{{- if eq .chezmoi.os "darwin" }}
+if [[ -o interactive ]]; then
+  bindkey -e
+fi
+{{- end }}
+
+# Shell completions
+{{ $zfunc := joinPath .chezmoi.homeDir ".zfunc" }}
+fpath=({{ $zfunc }} $fpath)
+autoload -Uz compinit && compinit
+
+#THIS MUST NEAR BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+{{ $sdkman := joinPath .chezmoi.homeDir ".sdkman" }}
+export SDKMAN_DIR="{{ $sdkman }}"
+{{- if stat (joinPath $sdkman "bin/sdkman-init.sh") }}
+source {{ joinPath $sdkman "bin/sdkman-init.sh" }}
+{{- end }}
+
+# Shell theme
+{{- if (lookPath "starship") }}
+eval "$(starship init zsh)"
+{{- end }}
+

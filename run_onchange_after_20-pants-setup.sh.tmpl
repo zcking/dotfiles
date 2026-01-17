@@ -1,0 +1,11 @@
+{{ if (lookPath "pants") -}}
+#!/bin/bash
+# Description: Generate pants completions
+
+# Ensure the directory exists
+mkdir -p "$HOME/.zfunc"
+OUT="$HOME/.zfunc/_pants"
+
+echo "Re-generating pants completions..."
+pants completion > "$OUT"
+{{- end }}

@@ -1,0 +1,29 @@
+# File: .env
+# Managed By: chezmoi
+# Description: environment variables and augmentations for shell.
+
+export EDITOR=nvim
+
+{{- $nvmDir := joinPath .chezmoi.homeDir ".nvm" }}
+{{- if stat $nvmDir }}
+
+# NVM
+export NVM_DIR="{{ $nvmDir }}"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+{{- end }}
+
+{{- if (lookPath "pyenv") }}
+
+# Pyenv
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+eval "$(pyenv init -)"
+{{- end }}
+
+{{- $cargoEnv := joinPath .chezmoi.homeDir ".cargo/env" }}
+{{- if stat $cargoEnv }}
+
+# Rust / Cargo
+. "{{ $cargoEnv }}"
+{{- end -}}
+

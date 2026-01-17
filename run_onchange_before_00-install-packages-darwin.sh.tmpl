@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+sudo apt install ripgrep
+{{ else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+
+# Install Homebrew if it's missing
+if ! command -v brew &> /dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Use Brew to install missing tools
+echo "Checking for core dependencies..."
+HOMEBREW_BUNDLE_NO_LOCK=1 brew bundle --file=- <<EOF
+brew "pyenv"
+brew "go"
+brew "ripgrep"
+brew "tenv"
+EOF
+{{ end -}}
+

@@ -1,0 +1,14 @@
+{{ if (lookPath "tenv") -}}
+#!/usr/bin/env zsh
+# Description: Generate tenv completions.
+# hash: {{ include (lookPath "tenv") | sha256sum }}
+
+# Ensure completion directory exists
+mkdir -p "$HOME/.zfunc"
+
+# Standard Zsh naming convention for completions is underscore prefix
+OUT="$HOME/.zfunc/_tenv"
+
+echo "Re-generating tenv completions..."
+tenv completion zsh > "$OUT"
+{{- end }}
