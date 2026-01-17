@@ -1,0 +1,59 @@
+#!/usr/bin/env zsh
+# Description: Install AWS CLI if not already installed
+# This script runs once per unique content version
+
+{{ if (lookPath "aws") -}}
+echo "AWS CLI is already installed: $(aws --version)"
+{{ else if eq .chezmoi.os "darwin" -}}
+# Install AWS CLI on macOS
+echo "Installing AWS CLI for macOS..."
+
+# Download the installer
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "/tmp/AWSCLIV2.pkg"
+
+# Install the package
+sudo installer -pkg /tmp/AWSCLIV2.pkg -target /
+
+# Clean up
+rm -f /tmp/AWSCLIV2.pkg
+
+# Verify installation
+if command -v aws &> /dev/null; then
+    echo "AWS CLI installed successfully: $(aws --version)"
+else
+    echo "Error: AWS CLI installation may have failed"
+    exit 1
+fi
+{{ else if eq .chezmoi.os "linux" -}}
+# Install AWS CLI on Linux
+echo "Installing AWS CLI for Linux..."
+
+# Download the installer
+# Detect the architecture automatically using chezmoi.arch
+{{- if eq .chezmoi.arch "amd64" -}}
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+{{- else if eq .chezmoi.arch "arm64" -}}
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "/tmp/awscliv2.zip"
+{{- else -}}
+    echo "Unsupported architecture: {{ .chezmoi.arch }}"
+    exit 1
+{{- end }}
+
+# Unzip and install
+unzip -q /tmp/awscliv2.zip -d /tmp
+sudo /tmp/aws/install
+
+# Clean up
+rm -rf /tmp/awscliv2.zip /tmp/aws
+
+# Verify installation
+if command -v aws &> /dev/null; then
+    echo "AWS CLI installed successfully: $(aws --version)"
+else
+    echo "Error: AWS CLI installation may have failed"
+    exit 1
+fi
+{{ else -}}
+echo "Unsupported OS for AWS CLI installation: {{ .chezmoi.os }}"
+exit 1
+{{ end -}}
