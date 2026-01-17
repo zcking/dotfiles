@@ -13,6 +13,7 @@ fi
 # Use Brew to install missing tools
 echo "Checking for core dependencies..."
 HOMEBREW_BUNDLE_NO_LOCK=1 brew bundle --file=- <<EOF
+brew "wget"
 brew "pyenv"
 brew "go"
 brew "ripgrep"
