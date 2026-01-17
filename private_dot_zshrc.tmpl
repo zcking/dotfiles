@@ -67,8 +67,9 @@ export SDKMAN_DIR="{{ $sdkman }}"
 source {{ joinPath $sdkman "bin" "sdkman-init.sh" }}
 {{- end }}
 
-# Shell theme
-{{- if (lookPath "starship") }}
-eval "$(starship init zsh)"
-{{- end }}
-
+# Tools that require something like: 
+# `eval "$(starship init zsh)"`
+{{ $toolsDir := joinPath .chezmoi.homeDir "tools.d" }}
+for init_script in {{ $toolsDir }}/*.sh; do
+  source "${init_script}"
+done
