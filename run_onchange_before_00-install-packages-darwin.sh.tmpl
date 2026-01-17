@@ -10,16 +10,16 @@ if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# Use Brew to install missing tools
-echo "Checking for core dependencies..."
-HOMEBREW_BUNDLE_NO_LOCK=1 brew bundle --file=- <<EOF
-brew "wget"
-brew "pyenv"
-brew "go"
-brew "ripgrep"
-brew "tenv"
-brew "trivy"
-brew "uv"
+# Use Brew to install selected tools
+if [ {{ len .brew_tools }} -gt 0 ]; then
+    echo "Installing selected Homebrew tools..."
+    HOMEBREW_BUNDLE_NO_LOCK=1 brew bundle --file=- <<EOF
+{{- range .brew_tools }}
+brew "{{ . }}"
+{{- end }}
 EOF
+else
+    echo "No Homebrew tools selected for installation."
+fi
 {{ end -}}
 

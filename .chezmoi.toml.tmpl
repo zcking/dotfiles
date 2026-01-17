@@ -1,0 +1,14 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+
+{{/* User prompted for which Homebrew tools to install (all selected by default) */}}
+{{- $allBrewTools := list "wget" "pyenv" "go" "ripgrep" "starship" "tenv" "trivy" "uv" -}}
+{{- $selectedBrewTools := promptMultichoiceOnce 
+    . "brew_tools" 
+    "Which Homebrew tools would you like to install? (all selected by default)" 
+    $allBrewTools 
+    $allBrewTools
+-}}
+
+[data]
+    email = {{ $email | quote }}
+    brew_tools = {{ $selectedBrewTools | toToml }}
