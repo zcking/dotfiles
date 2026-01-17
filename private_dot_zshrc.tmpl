@@ -63,8 +63,8 @@ autoload -Uz compinit && compinit
 #THIS MUST NEAR BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 {{ $sdkman := joinPath .chezmoi.homeDir ".sdkman" }}
 export SDKMAN_DIR="{{ $sdkman }}"
-{{- if stat (joinPath $sdkman "bin/sdkman-init.sh") }}
-source {{ joinPath $sdkman "bin/sdkman-init.sh" }}
+{{- if stat (joinPath $sdkman "bin" "sdkman-init.sh") }}
+source {{ joinPath $sdkman "bin" "sdkman-init.sh" }}
 {{- end }}
 
 # Shell theme

@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+# Description: Install SDKMAN if not already installed
+# This script runs once per unique content version
+
+# Check if SDKMAN is not already installed
+{{- if not (stat (joinPath .chezmoi.homeDir ".sdkman")) }}
+# Install SDKMAN
+curl -s "https://get.sdkman.io" | bash
+{{- else }}
+echo "SDKMAN is already installed"
+{{- end }}
