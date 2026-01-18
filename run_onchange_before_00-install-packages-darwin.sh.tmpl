@@ -10,16 +10,28 @@ if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# Use Brew to install selected tools
-if [ {{ len .brew_tools }} -gt 0 ]; then
-    echo "Installing selected Homebrew tools..."
-    HOMEBREW_BUNDLE_NO_LOCK=1 brew bundle --file=- <<EOF
+# Install dependencies from Homebrew
+echo "Installing Homebrew dependencies..."
+HOMEBREW_BUNDLE_NO_LOCK=1 HOMEBREW_NO_AUTO_UPDATE=1 brew bundle --verbose --file=- <<EOF
+# Taps
+# No extra taps needed.
+
+# Mandatory brews
+brew "neovim"
+
+# User-selected brews
 {{- range .brew_tools }}
 brew "{{ . }}"
 {{- end }}
-EOF
-else
-    echo "No Homebrew tools selected for installation."
-fi
-{{ end -}}
 
+# Mandatory casks
+cask "font-fira-code-nerd-font"
+cask "{{ .terminal_app }}"
+
+# User-selected casks
+{{- range .brew_casks }}
+cask "{{ . }}"
+{{- end }}
+EOF
+
+{{- end -}} {{/* end if eq .chezmoi.os "darwin" */}}

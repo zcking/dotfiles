@@ -3,18 +3,44 @@
 {{/* User prompted for which Homebrew tools to install (all selected by default) */}}
 {{/* Note: only prompt if running on macOS */}}
 {{ $selectedBrewTools := list }}
+{{ $selectedCasks := list }}
 {{- if eq .chezmoi.os "darwin" -}}
-{{- $allBrewTools := list "wget" "pyenv" "go" "ripgrep" "starship" "tenv" "trivy" "uv" -}}
+{{- $allBrewTools := list 
+    "go"
+    "podman"
+    "pyenv"
+    "ripgrep"
+    "starship"
+    "tenv"
+    "trivy"
+    "uv"
+    "wget"
+-}}
 {{- $selectedBrewTools = promptMultichoiceOnce 
     . "brew_tools" 
     "Which Homebrew tools would you like to install? (all selected by default)" 
     $allBrewTools 
     $allBrewTools
 -}}
+
+{{/* Prompt user for which cask (GUI) apps to install */}}
+{{- $allCasks := list "slack" "cursor" "arc" "spotify" "signal" -}}
+{{- $selectedCasks = promptMultichoiceOnce 
+    . "brew_casks"
+    "Which cask (GUI) apps would you like to install? (all selected by default)"
+    $allCasks
+    $allCasks
+-}}
 {{- end -}}
+
+{{/* Prompt user for which terminal app to use */}}
+{{- $allTerminalApps := list "ghostty" "iterm2" -}}
+{{- $terminalApp := promptChoiceOnce . "terminal_app" "Which terminal app would you like to use?" $allTerminalApps "ghostty" -}}
 
 [data]
     email = {{ $email | quote }}
+    terminal_app = {{ $terminalApp | quote }}
 {{- if eq .chezmoi.os "darwin" }}
     brew_tools = {{ $selectedBrewTools | toToml }}
+    brew_casks = {{ $selectedCasks | toToml }}
 {{- end -}}
