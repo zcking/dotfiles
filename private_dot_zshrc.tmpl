@@ -23,14 +23,17 @@ source {{ $functions }}
 # 4. PLUGINS
 {{- $pluginDir := joinPath .chezmoi.homeDir ".zsh" }}
 
-{{- $autosuggest := joinPath $pluginDir "zsh-autosuggestions" "zsh-autosuggestions.zsh" }}
-{{- if stat $autosuggest }}
-source {{ $autosuggest }}
+{{- $zshPlugins := list 
+    "zsh-autosuggestions"
+    "zsh-syntax-highlighting"
+-}}
+{{- range $plugin := $zshPlugins }}
+{{- $pluginFile := joinPath $pluginDir $plugin (printf "%s.zsh" $plugin) }}
+{{- if stat $pluginFile }}
+source {{ $pluginFile }}
+{{- else }}
+echo "Plugin {{ $plugin }} not found"
 {{- end }}
-
-{{- $syntax := joinPath $pluginDir "zsh-syntax-highlighting" "zsh-syntax-highlighting.zsh" }}
-{{- if stat $syntax }}
-source {{ $syntax }}
 {{- end }}
 
 # 5. ALIASES
