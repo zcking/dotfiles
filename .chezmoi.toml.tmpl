@@ -1,5 +1,13 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
+{{- $machineChoices := list "personal" "work" "server" -}}
+{{- $machine := promptChoiceOnce 
+    . "machine"
+    "Which machine are you setting up?"
+    $machineChoices
+    "personal"
+-}}
+
 {{/* User prompted for which Homebrew tools to install (all selected by default) */}}
 {{/* Note: only prompt if running on macOS */}}
 {{ $selectedBrewTools := list }}
@@ -39,6 +47,7 @@
 
 [data]
     email = {{ $email | quote }}
+    machine = {{ $machine | quote }}
     terminal_app = {{ $terminalApp | quote }}
 {{- if eq .chezmoi.os "darwin" }}
     brew_tools = {{ $selectedBrewTools | toToml }}
