@@ -1,0 +1,11 @@
+{{ if (lookPath "podman") -}}
+#!/usr/bin/env zsh
+# Description: Generate podman completions
+
+# Ensure the directory exists
+mkdir -p "$HOME/.zfunc"
+OUT="$HOME/.zfunc/_podman"
+
+echo "Re-generating podman completions..."
+podman completion zsh > "$OUT"
+{{- end }}
