@@ -5,7 +5,7 @@
 # Check if SDKMAN is not already installed
 {{- if not (stat (joinPath .chezmoi.homeDir ".sdkman")) }}
 # Install SDKMAN
-curl -s "https://get.sdkman.io" | bash
+curl -s "https://get.sdkman.io" | zsh
 {{- else }}
 echo "SDKMAN is already installed"
 {{- end }}
