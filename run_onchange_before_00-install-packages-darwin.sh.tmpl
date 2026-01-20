@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "linux" -}}
-#!/bin/sh
+#!/usr/bin/env zsh
 sudo apt install ripgrep
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
@@ -14,7 +14,7 @@ fi
 echo "Installing Homebrew dependencies..."
 HOMEBREW_BUNDLE_NO_LOCK=1 HOMEBREW_NO_AUTO_UPDATE=1 brew bundle --verbose --file=- <<EOF
 # Taps
-# No extra taps needed.
+tap "pantsbuild/tap"
 
 # Mandatory brews
 brew "neovim"

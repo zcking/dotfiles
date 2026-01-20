@@ -6,6 +6,7 @@
 mkdir -p "$HOME/.zfunc"
 OUT="$HOME/.zfunc/_pants"
 
-echo "Re-generating pants completions..."
-pants completion > "$OUT"
+# TODO: can't run this outside of a pants project directory
+#echo "Re-generating pants completions..."
+#pants completion > "$OUT"
 {{- end }}
