@@ -15,3 +15,36 @@ function load_env() {
 
     echo "Environment variables from $env_file loaded and exported."
 }
+
+# Create a new Git worktree, with a standardized directory to store it in.
+# Usage: mktree <worktree_name> [<base_branch>]
+# Example: mktree feature-a origin/main
+# Note: <base_branch> is optional and defaults to origin/main if not specified.
+function mktree() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: mktree <branch_name> [<base_branch>]"
+        return 1
+    fi
+
+    local proj_name=$(basename "$PWD")
+    local branch_name="$1"
+    local base_branch=${2:-origin/main}
+    
+    # Replace slashes with dashes for the directory name only
+    # Example: "feature/my-thing" becomes "feature-my-thing"
+    local dir_safe_name="${branch_name//\//-}"
+    local tree_dir="${PWD}/../${proj_name}.trees/${dir_safe_name}"
+
+    if git rev-parse --verify --quiet "$branch_name" > /dev/null; then
+        echo "Branch '$branch_name' exists. Adding worktree at: $dir_safe_name"
+        git worktree add "$tree_dir" "$branch_name"
+    else
+        echo "Creating new branch '$branch_name' from $base_branch at: $dir_safe_name"
+        git worktree add -b "$branch_name" "$tree_dir" "$base_branch"
+    fi
+
+    if [[ $? -eq 0 ]]; then
+        cd "$tree_dir"
+    fi
+}
+
