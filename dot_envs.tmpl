@@ -32,4 +32,5 @@ export NOTESROOT='{{- joinPath .chezmoi.homeDir "Documents" "Obsidian" }}'
 {{- if (lookPath "fzf") }}
 # fzf shell integration
 source <(fzf --zsh)
+source {{ joinPath .chezmoi.homeDir ".config" "fzf" "fzf-git.sh" }}
 {{- end }}
