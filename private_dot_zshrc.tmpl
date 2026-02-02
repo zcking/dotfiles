@@ -7,7 +7,7 @@ source {{ $path }}
 
 
 # 2. ENVIRONMENT VARIABLES
-{{ $env := joinPath .chezmoi.homeDir ".env" }}
+{{ $env := joinPath .chezmoi.homeDir ".envs" }}
 {{- if stat $env }}
 source {{ $env }}
 {{- end }}
