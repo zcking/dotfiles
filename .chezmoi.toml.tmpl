@@ -14,7 +14,9 @@
 {{ $selectedCasks := list }}
 {{- if eq .chezmoi.os "darwin" -}}
 {{- $allBrewTools := list 
+    "bat"
     "go"
+    "fzf"
     "podman"
     "pyenv"
     "ripgrep"

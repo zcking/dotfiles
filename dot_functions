@@ -48,3 +48,49 @@ function mktree() {
     fi
 }
 
+# URL-encode a string.
+# Usage: urlencode <string>
+# Example: encoded_string=$(urlencode "a string with spaces and !@#")
+function urlencode() {
+  echo -n "$1" | jq -Rr @uri
+}
+
+function _dbx_conf_field() {
+  local profile=$1
+  local fieldname=$2
+  cat $HOME/.databrickscfg | rg "\[$profile\]" -A4 | rg $fieldname | awk '{print $3}'
+}
+
+function databricks-m2m-token() {
+  local profile=$1
+  local client_id=$(_dbx_conf_field $profile client_id)
+  local client_secret=$(_dbx_conf_field $profile client_secret)
+  local db_host=$(_dbx_conf_field $profile host)
+  local token_endpoint_url="${db_host}/oidc/v1/token"
+
+  curl --silent --request POST \
+    --url $token_endpoint_url \
+    --user "$client_id:$client_secret" \
+    --data 'grant_type=client_credentials&scope=all-apis'
+}
+
+# Ripgrep + fzf + neovim
+# ripgrep->fzf->nvim [QUERY]
+# https://junegunn.github.io/fzf/tips/ripgrep-integration/
+rfv() (
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in NeoVim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+      --delimiter : \
+      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+)

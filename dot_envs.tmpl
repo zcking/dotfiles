@@ -1,4 +1,4 @@
-# File: .env
+# File: .envs
 # Managed By: chezmoi
 # Description: environment variables and augmentations for shell.
 
@@ -25,4 +25,11 @@ eval "$(pyenv init -)"
 
 # Rust / Cargo
 . "{{ $cargoEnv }}"
+{{- end }}
+
+export NOTESROOT='{{- joinPath .chezmoi.homeDir "Documents" "Obsidian" }}'
+
+{{- if (lookPath "fzf") }}
+# fzf shell integration
+source <(fzf --zsh)
 {{- end }}
