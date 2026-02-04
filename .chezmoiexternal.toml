@@ -14,3 +14,7 @@
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh"
 
+[".config/zellij/plugins/room.wasm"]
+    type = "file"
+    url = "https://github.com/rvcas/room/releases/latest/download/room.wasm"
+

@@ -76,3 +76,16 @@ source {{ joinPath $sdkman "bin" "sdkman-init.sh" }}
 for init_script in {{ $toolsDir }}/*.sh; do
   source "${init_script}"
 done
+
+# Launch zellij if it is installed, and we're in ghostty terminal (not an IDE term)
+if [[ -z "$ZELLIJ" ]] && [[ -z "$SSH_CONNECTION"  ]] && [[ "$TERM" == "xterm-ghostty" ]] ; then
+  if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+    zellij attach -c
+  else
+    zellij -l welcome
+  fi
+
+  if [[ "$ZELLIJ_AUTO_EXIT" == "TRUE" ]]; then
+    exit
+  fi
+fi
