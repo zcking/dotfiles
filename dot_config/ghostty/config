@@ -41,3 +41,7 @@ bell-features = system,title,no-audio,border
 bell-audio-volume = 0.8
 macos-icon = retro
 auto-update = check
+
+# Background settings
+background-opacity = 0.85
+background-blur = 7
